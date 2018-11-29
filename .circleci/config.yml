@@ -19,7 +19,7 @@ jobs:
       - checkout
       - run: echo "Ha a second hello ;)"
       - attach_workspace:
-        at: my_workspace
+          at: my_workspace
 
       - run: |
           if [[ $(cat my_workspace/testito) == "Trying out workspaces" ]]; then
