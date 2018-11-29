@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run: echo "A first hello"
       - run: mkdir -p my_workspace
-      - run: echo "send message to testito file" > my_workspace/testito
+      - run: echo "Super testito :)" > my_workspace/testito
       - persist_to_workspace:
           root: my_workspace
           paths:
@@ -22,7 +22,7 @@ jobs:
           at: my_workspace
 
       - run: |
-          if [[ $(cat my_workspace/testito) == "Trying out workspaces" ]]; then
+          if [[ $(cat my_workspace/testito) == "Super testito :)" ]]; then
             echo "It worked!";
           else
             echo "Nope!"; exit 1
