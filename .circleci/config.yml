@@ -6,3 +6,17 @@ jobs:
     steps:
       - checkout
       - run: echo "A first hello"
+      - run: sleep 20
+  build2:
+    docker:
+      - image: circleci/ruby:2.4.1
+    steps:
+      - checkout
+      - run: echo "Ha a second hello ;)"
+      - run: sleep 10
+workflows:
+  version: 2
+  one_and_two:
+    jobs:
+      - build
+      - build2
