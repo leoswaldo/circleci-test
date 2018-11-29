@@ -6,17 +6,32 @@ jobs:
     steps:
       - checkout
       - run: echo "A first hello"
-      - run: sleep 20
+      - run: mkdir -p my_workspace
+      - run: echo "send message to testito file" > my_workspace/testito
+      - persist_to_workspace:
+          root: my_workspace
+          paths:
+            - testito
   build2:
     docker:
       - image: circleci/ruby:2.4.1
     steps:
       - checkout
       - run: echo "Ha a second hello ;)"
-      - run: sleep 10
+      - attach_workspace:
+        at: my_workspace
+
+      - run: |
+          if [[ $(cat my_workspace/testito) == "Trying out workspaces" ]]; then
+            echo "It worked!";
+          else
+            echo "Nope!"; exit 1
+          fi
 workflows:
   version: 2
   one_and_two:
     jobs:
       - build
-      - build2
+      - build2:
+          requires:
+            - build
