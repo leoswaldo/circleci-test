@@ -5,6 +5,8 @@ jobs:
       - image: circleci/ruby:2.4.1
     steps:
       - checkout
+      - run: pwd
+      - run: ls -la
       - run: echo "A first hello"
       - run: mkdir -p my_workspace
       - run: echo "Super testito :)" > my_workspace/testito
