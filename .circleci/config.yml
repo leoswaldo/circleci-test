@@ -8,9 +8,9 @@ jobs:
       - run: pwd
       - run: ls -la
       - run: git branch
-      - run: git log
+      - run: git log  --pretty=oneline
       - run: git reset HEAD~1 --hard
-      - run: git log
+      - run: git log  --pretty=oneline
   build:
     docker:
       - image: circleci/ruby:2.4.1
