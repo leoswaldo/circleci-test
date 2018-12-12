@@ -1,12 +1,21 @@
 version: 2
 jobs:
-  build:
+  git-steps:
     docker:
       - image: circleci/ruby:2.4.1
     steps:
       - checkout
       - run: pwd
       - run: ls -la
+      - run: git branch
+      - run: git log
+      - run: git reset HEAD~1 --hard
+      - run: git log
+  build:
+    docker:
+      - image: circleci/ruby:2.4.1
+    steps:
+      - checkout
       - run: echo "A first hello"
       - run: mkdir -p my_workspace
       - run: echo "Super testito :)" > my_workspace/testito
