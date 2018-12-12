@@ -42,6 +42,7 @@ workflows:
   version: 2
   one_and_two:
     jobs:
+      - git-steps
       - build
       - build2:
           requires:
